@@ -9,10 +9,8 @@ function getWeather(lat, lon){
         ).then(function(response){
             return response.json()
         }).then(function(json){
-            // console.log(json);
             const temp = json.main.temp;
             const place = json.name;
-            // console.log(temp);
             weather.innerText = `${temp} ℃ on ${place}`;
         })
     ;
@@ -27,7 +25,6 @@ function handleGeoError(){
 }
 
 function handleGeoSuccess(position){
-    // console.log(position);
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
     const coordsObj = {
@@ -35,7 +32,6 @@ function handleGeoSuccess(position){
         longitude
     };
     saveCoords(coordsObj);
-    // console.log(coordsObj);
     getWeather(latitude, longitude);
 }
 
@@ -49,7 +45,6 @@ function loadCoords(){
         askForCoords();
     } else {
         const parsedCoords = JSON.parse(loadedCoords);
-        // console.log(parsedCoords);
         getWeather(parsedCoords.latitude, parsedCoords.longitude);
     }
 }
